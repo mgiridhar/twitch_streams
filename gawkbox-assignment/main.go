@@ -10,19 +10,44 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 )
 
+type Configuration struct {
+	HTTP_PORT int
+	LOGS_PATH string
+}
+
 var (
-	Tracelog   *log.Logger
-	Infolog    *log.Logger
-	Warninglog *log.Logger
-	Errorlog   *log.Logger
+	CONFIG_FILE string = os.Getenv("GOPATH") + "/src/gawkbox-assignment/config/config.json"
+	config      Configuration
+	Tracelog    *log.Logger
+	Infolog     *log.Logger
+	Warninglog  *log.Logger
+	Errorlog    *log.Logger
 )
 
 func init() {
 
-	log.Println("Initializing logs")
-	file, err := os.OpenFile("./logs.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	confFile, err := os.Open(CONFIG_FILE)
+	if err != nil {
+		log.Fatalln(err.Error())
+		panic(err.Error())
+	}
+	defer confFile.Close()
+
+	decoder := json.NewDecoder(confFile)
+	err = decoder.Decode(&config)
+	if err != nil {
+		log.Fatalln(err.Error())
+		panic(err.Error())
+	}
+
+	if _, err := os.Stat(config.LOGS_PATH); os.IsNotExist(err) {
+		os.Mkdir(config.LOGS_PATH, 744)
+	}
+	log.Println("Initializing log configuration")
+	file, err := os.OpenFile(config.LOGS_PATH+"/logs.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalln("Failed to open log file", ":", err)
 	}
@@ -79,7 +104,8 @@ func main() {
 	http.HandleFunc("/login", validateLogin)
 
 	// Run server
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+strconv.Itoa(config.HTTP_PORT), nil)
+	//http.ListenAndServe(":8080", nil)
 }
 
 // myHandlerFunc - A sample handler function for the route /sample_route for your HTTP server

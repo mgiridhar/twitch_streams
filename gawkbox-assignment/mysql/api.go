@@ -3,8 +3,11 @@ package mysql
 import (
 	"database/sql"
 	//"fmt"
+	"encoding/json"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
+	"os"
+	"strconv"
 )
 
 //import . "database/sql"
@@ -24,30 +27,59 @@ mysql> describe users;
 */
 
 var (
-	Tracelog   *log.Logger
-	Infolog    *log.Logger
-	Warninglog *log.Logger
-	Errorlog   *log.Logger
+	CONFIG_FILE       string = os.Getenv("GOPATH") + "/src/gawkbox-assignment/config/config.json"
+	Tracelog          *log.Logger
+	Infolog           *log.Logger
+	Warninglog        *log.Logger
+	Errorlog          *log.Logger
+	CONNECTION_STRING string
+	// Db *DB
 )
 
-/*
-var Db *DB
+type Configuration struct {
+	MYSQL_PORT     int
+	MYSQL_USER     string
+	MYSQL_PASSWORD string
+	MYSQL_DBNAME   string
+	MYSQL_IP       string
+}
 
 func init() {
-	Db, err := sql.Open("mysql", "gawkbox:asdqwe123@tcp(127.0.0.1:3306)/gawkbox")
+
+	confFile, err := os.Open(CONFIG_FILE)
 	if err != nil {
-		panic(err.Error()) // proper error handling instead of panic in your app
+		log.Fatalln(err.Error())
+		panic(err.Error())
 	}
-	defer Db.Close()
-	fmt.Println("Successfully opened mysql connection..")
-}*/
+	defer confFile.Close()
+
+	decoder := json.NewDecoder(confFile)
+	var config Configuration
+	err = decoder.Decode(&config)
+	if err != nil {
+		log.Fatalln(err.Error())
+		panic(err.Error())
+	}
+
+	CONNECTION_STRING = config.MYSQL_USER + ":" + config.MYSQL_PASSWORD + "@tcp(" + config.HOST_IP + ":" + strconv.Itoa(config.MYSQL_PORT) + ")/" + config.MYSQL_DBNAME
+	//log.Println(CONNECTION_STRING)
+
+	/*
+		db, err := sql.Open("mysql", CONNECTION_STRING)
+		if err != nil {
+			log.Println(err.Error())
+			panic(err.Error()) // proper error handling instead of panic in your app
+		}
+		defer db.Close()
+		log.Println("Successfully opened mysql connection..")*/
+}
 
 // signUp - to create new user account with username and password
 // returns false - if username/email already available
 // returns true - if succesfully inserted user information into table
 func SignUp(username, email, password string) bool {
 
-	db, err := sql.Open("mysql", "gawkbox:asdqwe123@tcp(127.0.0.1:3306)/gawkbox")
+	db, err := sql.Open("mysql", CONNECTION_STRING)
 	if err != nil {
 		Errorlog.Println(err.Error())
 		panic(err.Error()) // proper error handling instead of panic in your app
@@ -80,7 +112,7 @@ func SignUp(username, email, password string) bool {
 // returns true - if valid credentials
 func ValidateLogin(loginName, password string) bool {
 
-	db, err := sql.Open("mysql", "gawkbox:asdqwe123@tcp(127.0.0.1:3306)/gawkbox")
+	db, err := sql.Open("mysql", CONNECTION_STRING)
 	if err != nil {
 		Errorlog.Println(err.Error())
 		panic(err.Error()) // proper error handling instead of panic in your app
