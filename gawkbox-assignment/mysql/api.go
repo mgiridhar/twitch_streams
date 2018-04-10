@@ -61,7 +61,7 @@ func init() {
 		panic(err.Error())
 	}
 
-	CONNECTION_STRING = config.MYSQL_USER + ":" + config.MYSQL_PASSWORD + "@tcp(" + config.HOST_IP + ":" + strconv.Itoa(config.MYSQL_PORT) + ")/" + config.MYSQL_DBNAME
+	CONNECTION_STRING = config.MYSQL_USER + ":" + config.MYSQL_PASSWORD + "@tcp(" + config.MYSQL_IP + ":" + strconv.Itoa(config.MYSQL_PORT) + ")/" + config.MYSQL_DBNAME
 	//log.Println(CONNECTION_STRING)
 
 	/*
