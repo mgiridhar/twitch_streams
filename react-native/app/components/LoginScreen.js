@@ -58,7 +58,8 @@ export default class LoginScreen extends Component {
       }
     })
     .catch((error) => {
-      console.error(error);
+      alert("Error connecting to ther server");
+      console.log(error);
     });
   }
 
@@ -86,7 +87,8 @@ export default class LoginScreen extends Component {
       }
     })
     .catch((error) => {
-      console.error(error);
+      alert("Error connecting to ther server");
+      console.log(error);
     });
   }
 

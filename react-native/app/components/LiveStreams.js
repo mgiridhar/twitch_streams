@@ -28,8 +28,10 @@ class RenderStreams extends Component {
     return(
       <TouchableOpacity
         onPress={
+          //this.props.isLoading= false,
           () => this.props.navigation.navigate('LiveStreamVideo', {
             channelName: item.name,
+            videoRef: React.createRef(),
           })
           //() => this.onPressItem(item.name)
         }
@@ -71,7 +73,7 @@ class RenderStreams extends Component {
 
 export default class LiveStreams extends Component {
   static navigationOptions = {
-    title:'Live Streams',
+    title: 'Live Streams',
   };
   constructor(props) {
     super(props);
@@ -85,7 +87,13 @@ export default class LiveStreams extends Component {
   }
 
   componentDidMount() {
+    console.log("Live streams mounted");
     this.getLiveStreams(this.state.liveStreamsREST);
+  }
+
+  componentWillUnMount() {
+    console.log("Live streams unmounted");
+    this.setState({isLoading: true});
   }
 
   getLiveStreams(restUrl) {
@@ -103,7 +111,8 @@ export default class LiveStreams extends Component {
        });
      })
      .catch((error) => {
-       console.error(error);
+       alert("Error connecting to ther server");
+       console.log(error);
      });
   }
 
@@ -126,7 +135,7 @@ export default class LiveStreams extends Component {
      //console.log("Live Streams...... CHECK")
      return(
          <View style={{flex:1,
-           alignItems:'center', justifyContent: 'flex-start',
+           alignItems:'center', justifyContent: 'flex-start', paddingTop:20,
            backgroundColor: '#00CC99' //'#B3FFEC'
          }}>
            <View style={{justifyContent: 'flex-end'}}>
@@ -193,7 +202,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: 15,
     padding: 5,
   },
   list: {

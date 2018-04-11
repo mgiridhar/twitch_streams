@@ -21,7 +21,7 @@
    Alert,
    AppRegistry,
  } from 'react-native';
- import {StackNavigator, TabNavigator, SwitchNavigator} from 'react-navigation';
+ import {StackNavigator, DrawerNavigator, TabNavigator, SwitchNavigator} from 'react-navigation';
  //import Video from 'react-native-video';
  //import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -83,14 +83,15 @@
    }
  );
 
- export default class App extends Component {
 
-   render() {
-     return(
-       <RouteSwitch />
-     );
-   }
+export default class App extends Component {
+
+ render() {
+   return(
+     <RouteSwitch />
+   )
  }
+}
 
  const styles = StyleSheet.create({
    container: {
