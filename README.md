@@ -11,7 +11,7 @@ that communicates with twitch REST API and Mysql database.
 - [Docker](https://www.docker.com)
 
 ## Screenshots
-![Login Screen](react-native/resources/login_screen.png?raw=true | width=200)
+![Login Screen](react-native/resources/login_screen.png =100x200)
 ![Signup](react-native/resources/signup_screen.png?raw=true "Signup Screen")
 ![Live Streams](react-native/resources/live_streams.png?raw=true "Live Streams Screen")
 ![Live Streaming](react-native/resources/live_streaming.png?raw=true "Video Live Streaming Screen")
