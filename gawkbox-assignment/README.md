@@ -42,13 +42,14 @@ Pull a MySQL Docker image using the below command:
 docker pull mysql/mysql-server:latest
 ```
 
-Using the mysql image created, run the below command to deploy the mysql container,
+Using the mysql image created, run the below command to deploy the mysql container, 
 ```
 docker run --name=mysqldb -e MYSQL_ROOT_PASSWORD=asdqwe -e MYSQL_USER=gawkbox \
         -e MYSQL_PASSWORD=asdqwe123 -e MYSQL_DATABASE=gawkbox \
-        --mount source=$GOPATH/src/scripts,target=/docker-entrypoint-initdb.d \
+        --mount type=bind,src=$GOPATH/src/scripts/,dst=/docker-entrypoint-initdb.d/ \
         -d mysql/mysql-server:latest
 ```
+You can find more information on running mysql docker containers [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/docker-mysql-more-topics.html)
 
 Make sure the MYSQL credentials in the above command and in the `config/config.json` are same.
 
