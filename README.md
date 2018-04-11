@@ -61,7 +61,17 @@ docker run --name server_db_link --link mysqldb:mysql -d web_server
 ```
 
 #### Running the app in iOS/Android Simulator
-Assuming you have setup your iOS and Android simulator, installed npm and react-native client.
+Assuming you have setup your iOS and Android simulator, and installed [npm](https://www.npmjs.com).
+
+Install react-native client,
+```
+npm install react-native-cli
+```
+
+Install dependency react-navigation,
+```
+npm install react-navigation
+```
 
 Initialize a react-native app,
 ```
@@ -81,8 +91,25 @@ react-native run-ios
 react-native run-android
 ```
 
-Fire the app in simulator from another terminal,
+Fire the app in simulator from another terminal under the same react-native app directory,
 ```
 react-native start
 ```
+
+While running the app in iOS simulator, you might encounter the below error message saying,
+```
+Error Loading Page
+Domain: NSURLErrorDomain
+Error Code: -1022
+Description: The resource could not be loaded because
+the App Transport Security policy requires the use of a
+secure connection
+```
+In that case, follow the instructions in [this link](https://blog.bigbinary.com/2016/07/27/open-non-https-sites-in-webview-in-react-native.html).
+
+## TO DO
+- Unit tests
+- Integrate OAuth
+- Encrypt password while storing it in database
+- Handle memory leak error
 
