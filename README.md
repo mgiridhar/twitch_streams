@@ -58,7 +58,7 @@ This image exposes the standard MySQL port (3306), so container linking makes th
 instance available to Go application container. Start your application container like this 
 in order to link it to the MySQL container:
 ```
-docker run --name server_db_link --link mysqldb:mysql -d web_server
+docker run --name server_db_link --link mysqldb:mysql -d web_server_image
 ```
 
 #### Running the app in iOS/Android Simulator
