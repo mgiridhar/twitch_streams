@@ -11,10 +11,10 @@ that communicates with twitch REST API and Mysql database.
 - [Docker](https://www.docker.com)
 
 ## Screenshots
-<img src="react-native/resources/login_screen.png" width=250 height=400/>
-<img src="react-native/resources/signup_screen.png" width=250 height=400/>
-<img src="react-native/resources/live_streams.png" width=250 height=400/>
-<img src="react-native/resources/live_streaming.png" width=250 height=400/>
+<img src="react-native/resources/login_screen.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;"/>
+<img src="react-native/resources/signup_screen.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
+<img src="react-native/resources/live_streams.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
+<img src="react-native/resources/live_streaming.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
 
 ## Installation and Setup
 This app requires you to install [Golang](https://golang.org/dl/) and get familiar
