@@ -14,6 +14,7 @@ that communicates with twitch REST API and Mysql database.
 <img src="react-native/resources/login_screen.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;"/>
 <img src="react-native/resources/signup_screen.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
 <img src="react-native/resources/live_streams.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
+<img src="react-native/resources/search_query.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
 <img src="react-native/resources/live_streaming.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;" />
 
 ## Installation and Setup
