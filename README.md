@@ -10,6 +10,12 @@ that communicates with twitch REST API and Mysql database.
 - [MySQL](https://www.mysql.com)
 - [Docker](https://www.docker.com)
 
+## Screenshots
+![Login](react-native/resources/login_screen.png?raw=true "Login Screen")
+![Signup](react-native/resources/signup_screen.png?raw=true "Signup Screen")
+![Live Streams](react-native/resources/live_streams.png?raw=true "Live Streams Screen")
+![Live Streaming](react-native/resources/live_streaming.png?raw=true "Video Live Streaming Screen")
+
 ## Installation and Setup
 This app requires you to install [Golang](https://golang.org/dl/) and get familiar
 with [Go Workspaces](https://golang.org/doc/code.html#Workspaces) and
@@ -27,7 +33,7 @@ cd gawkbox_assignment/
 ```
 
 Modify the `MYSQL_IP` parameter in config/config.json file to match the Mysql
-container's IP address. 
+container's IP address.
 
 Build a docker image for the Golang web-server, and spin up a docker container
 that serves at port `8080`.
@@ -42,7 +48,7 @@ Pull a MySQL Docker image using the below command:
 docker pull mysql/mysql-server:latest
 ```
 
-Using the mysql image created, run the below command to deploy the mysql container, 
+Using the mysql image created, run the below command to deploy the mysql container,
 ```
 docker run --name=mysqldb -e MYSQL_ROOT_PASSWORD=asdqwe -e MYSQL_USER=gawkbox \
         -e MYSQL_PASSWORD=asdqwe123 -e MYSQL_DATABASE=gawkbox \
@@ -55,7 +61,7 @@ Make sure the MYSQL credentials in the above command and in the `config/config.j
 
 ##### Connect to MySQL from Golang application in another Docker container
 This image exposes the standard MySQL port (3306), so container linking makes the MySQL
-instance available to Go application container. Start your application container like this 
+instance available to Go application container. Start your application container like this
 in order to link it to the MySQL container:
 ```
 docker run --name server_db_link --link mysqldb:mysql -d web_server_image
@@ -87,8 +93,8 @@ cd live_streams
 
 Run the following command depending on platform in the `live_streams` directory,
 ```
-react-native run-ios 
-(or) 
+react-native run-ios
+(or)
 react-native run-android
 ```
 
@@ -113,4 +119,3 @@ In that case, follow the instructions in [this link](https://blog.bigbinary.com/
 - Integrate OAuth
 - Encrypt password while storing it in database
 - Handle memory leak error
-
