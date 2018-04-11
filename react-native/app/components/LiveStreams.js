@@ -151,7 +151,7 @@ export default class LiveStreams extends Component {
              onChangeText={(text) => this.setState({text})}
              onSubmitEditing = {() => {
                if(this.state.text !== '') {
-                 this.getLiveStreams(this.state.liveStreamsQueryREST + this.state.text);
+                 this.getLiveStreams(this.state.liveStreamsQueryREST + '{' + this.state.text + '}');
                }
                else {
                  this.getLiveStreams(this.state.liveStreamsREST);
@@ -159,7 +159,7 @@ export default class LiveStreams extends Component {
              }}
              onEndEditing = {() => {
                if(this.state.text !== '') {
-                 this.getLiveStreams(this.state.liveStreamsQueryREST + this.state.text);
+                 this.getLiveStreams(this.state.liveStreamsQueryREST + '{' + this.state.text + '}');
                }
                else {
                  this.getLiveStreams(this.state.liveStreamsREST);

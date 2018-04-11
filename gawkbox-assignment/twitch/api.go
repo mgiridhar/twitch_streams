@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	//"strings"
+	"strings"
 )
 import . "net/http"
 
@@ -105,8 +105,9 @@ func GetAllLiveStreams(limit int) []map[string]string {
 func GetLiveStreamsByQuery(query string) []map[string]string {
 	Infolog.Println("Retrieving all live streaming users for query " + query + "...")
 
+	query = strings.Replace(query, " ", "%20", -1)
 	streamsUrl := API_URL + SEARCH + STREAMS + "?" + CLIENT_ID_PARAM + API_VERSION_PARAM + QUERY_PARAM + query
-	//fmt.Println(streamsUrl)
+	Infolog.Println(streamsUrl)
 	response, err := http.Get(streamsUrl)
 	if err != nil {
 		Errorlog.Println(err.Error())
