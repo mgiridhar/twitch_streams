@@ -91,7 +91,7 @@ export default class LiveStreams extends Component {
     this.getLiveStreams(this.state.liveStreamsREST);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     console.log("Live streams unmounted");
     this.setState({isLoading: true});
   }

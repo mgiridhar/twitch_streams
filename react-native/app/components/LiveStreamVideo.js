@@ -46,7 +46,7 @@ export default class LiveStreamVideo extends Component {
      });
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     console.log("video unmounted");
     this.videoRef = undefined;
     this.setState({isLoading: true});
