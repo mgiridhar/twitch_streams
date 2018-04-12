@@ -9,6 +9,7 @@ that communicates with twitch REST API and Mysql database.
 - [React Native](https://facebook.github.io/react-native/)
 - [MySQL](https://www.mysql.com)
 - [Docker](https://www.docker.com)
+- [Twitch REST API](https://dev.twitch.tv/docs/v5/)
 
 ## Screenshots
 <img src="react-native/resources/login_screen.png" width=200 height=400 style="float: left; margin-right: 1%; margin-bottom: 0.5em;"/>
@@ -116,6 +117,7 @@ secure connection
 In that case, follow the instructions in [this link](https://blog.bigbinary.com/2016/07/27/open-non-https-sites-in-webview-in-react-native.html).
 
 ## TO DO
+- Integrate Twitch chat room for user collaboration
 - Unit tests
 - Integrate OAuth
 - Encrypt password while storing it in database
